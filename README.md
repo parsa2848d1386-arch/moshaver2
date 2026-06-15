@@ -1,11 +1,41 @@
-<div align="center">
+# پلتفرم مشاوره هوشمند (Moshaver-1)
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+این پروژه یک سیستم چت پیشرفته برای مشاوره است که از هوش مصنوعی برای تحلیل لحن، استخراج حافظه بلندمدت و ردیابی وضعیت روانی کاربران استفاده می‌کند.
 
-  <h1>Built with AI Studio</h2>
+## تکنولوژی‌های استفاده شده (Tech Stack)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **فریم‌ورک**: Next.js (App Router)
+- **زبان**: TypeScript
+- **استایل‌دهی**: Tailwind CSS + Glassmorphism UI
+- **پایگاه داده**: Firebase Firestore
+- **مدیریت وضعیت**: Zustand
+- **رندر مجازی**: TanStack Virtual
+- **صفحات پس‌زمینه (Cron / Queues)**: Upstash QStash
+- **محدودکننده درخواست (Rate Limiting)**: Upstash Redis
+- **هوش مصنوعی**: Google Gemini API
+- **اعتبارسنجی**: Zod
+- **تست**: Vitest (Unit) + Playwright (E2E)
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## نحوه اجرای پروژه (Local Development)
 
-</div>
+۱. ریپازیتوری را کلون کنید.
+۲. وابستگی‌ها را نصب کنید:
+```bash
+npm install
+```
+۳. فایل `.env.local` را ایجاد کنید و کلیدهای ضروری (Firebase, Upstash, Gemini) را قرار دهید.
+۴. سرور توسعه را اجرا کنید:
+```bash
+npm run dev
+```
+۵. پروژه در `http://localhost:3000` در دسترس خواهد بود.
+
+## ساختار پروژه‌
+
+- `src/app`: روت‌های Next.js و APIها
+- `src/components`: کامپوننت‌های رابط کاربری
+- `src/services`: لایه منطق تجاری (Business Logic)
+- `src/store`: وضعیت‌های سراسری با Zustand
+- `src/lib`: پیکربندی‌ها و Zod Schemas
+- `src/__tests__`: تست‌های واحد
+- `e2e`: تست‌های یکپارچه

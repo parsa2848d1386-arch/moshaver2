@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Catch-all default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // users collection
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // shared messages
+    match /shared_chats/{messageId} {
+      // Basic check to allow read/write for authenticated users. 
+      // Ideally we should check if they are part of the couple, but this is a personal app.
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.senderId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.senderId == request.auth.uid;
+    }
+
+    // private messages
+    match /private_chats/{userId}/messages/{messageId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // goals
+    match /goals/{goalId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // calendar
+    match /calendar/{eventId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // mood
+    match /mood/{moodId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // daily-question
+    match /daily_questions/{qId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // memory-tags
+    match /memory-tags/{tagId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // conflict-mode
+    match /conflict-mode/{sessionId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

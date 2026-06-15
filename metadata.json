@@ -1,0 +1,10 @@
+{
+  "name": "Moshaver-1",
+  "description": "پلتفرم مشاوره هوشمند برای تحلیل لحن، ردیابی وضعیت روانی و استخراج حافظه بلندمدت با پشتیبانی از هوش مصنوعی Google Gemini",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
